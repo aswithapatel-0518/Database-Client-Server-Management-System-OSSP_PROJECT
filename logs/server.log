@@ -1,0 +1,143 @@
+[2026-09-17 09:28:14] SERVER: Logger initialized successfully
+[2026-09-17 09:28:14] SERVER: Test server started
+[2026-09-17 09:28:14] SERVER: Test client connected
+[2026-09-17 09:51:39] SERVER: Logger initialized successfully
+[2026-09-17 09:51:39] SERVER: Server started successfully
+[2026-09-17 09:51:39] SERVER: Worker thread 1 started
+[2026-09-17 09:51:39] SERVER: Worker thread 2 started
+[2026-09-17 09:51:39] SERVER: Worker thread 3 started
+[2026-09-17 09:51:39] SERVER: Worker thread 4 started
+[2026-09-17 09:54:11] SERVER: Server shutdown initiated
+[2026-09-17 09:54:11] SERVER: Memory-mapped database closed
+[2026-09-17 09:56:49] SERVER: Logger initialized successfully
+[2026-09-17 09:56:49] SERVER: Server started successfully
+[2026-09-17 09:56:49] SERVER: Worker thread 1 started
+[2026-09-17 09:56:49] SERVER: Worker thread 2 started
+[2026-09-17 09:56:49] SERVER: Worker thread 3 started
+[2026-09-17 09:56:49] SERVER: Worker thread 4 started
+[2026-09-17 09:56:57] SERVER: Client connected: 127.0.0.1
+[2026-09-17 09:58:21] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 09:59:41] SERVER: Client connected: 127.0.0.1
+[2026-09-17 10:01:01] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 10:08:00] SERVER: Client connected: 127.0.0.1
+[2026-09-17 10:08:17] SERVER: Client connected: 127.0.0.1
+[2026-09-17 10:11:19] SERVER: Server shutdown initiated
+[2026-09-17 10:11:19] SERVER: Memory-mapped database closed
+[2026-09-17 10:12:36] SERVER: Logger initialized successfully
+[2026-09-17 10:12:36] SERVER: Server started successfully
+[2026-09-17 10:12:36] SERVER: Worker thread 1 started
+[2026-09-17 10:12:36] SERVER: Worker thread 2 started
+[2026-09-17 10:12:36] SERVER: Worker thread 3 started
+[2026-09-17 10:12:36] SERVER: Worker thread 4 started
+[2026-09-17 13:53:33] SERVER: Server shutdown initiated
+[2026-09-17 13:53:33] SERVER: Memory-mapped database closed
+[2026-09-17 13:53:39] SERVER: Logger initialized successfully
+[2026-09-17 13:53:39] SERVER: Server started successfully
+[2026-09-17 13:53:39] SERVER: Worker thread 1 started
+[2026-09-17 13:53:39] SERVER: Worker thread 2 started
+[2026-09-17 13:53:39] SERVER: Worker thread 3 started
+[2026-09-17 13:53:39] SERVER: Worker thread 4 started
+[2026-09-17 13:53:50] SERVER: Client connected: 127.0.0.1
+[2026-09-17 13:55:50] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 13:56:10] SERVER: Server shutdown initiated
+[2026-09-17 13:56:10] SERVER: Memory-mapped database closed
+[2026-09-17 13:57:17] SERVER: Logger initialized successfully
+[2026-09-17 13:57:17] SERVER: Server started successfully
+[2026-09-17 13:57:17] SERVER: Worker thread 1 started
+[2026-09-17 13:57:17] SERVER: Worker thread 2 started
+[2026-09-17 13:57:17] SERVER: Worker thread 3 started
+[2026-09-17 13:57:17] SERVER: Worker thread 4 started
+[2026-09-17 13:57:29] SERVER: Client connected: 127.0.0.1
+[2026-09-17 13:58:07] SERVER: Client connected: 127.0.0.1
+[2026-09-17 13:59:46] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 13:59:51] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 14:01:43] SERVER: Server shutdown initiated
+[2026-09-17 14:01:43] SERVER: Memory-mapped database closed
+[2026-09-17 14:01:48] SERVER: Logger initialized successfully
+[2026-09-17 14:01:48] SERVER: Server started successfully
+[2026-09-17 14:01:48] SERVER: Worker thread 1 started
+[2026-09-17 14:01:48] SERVER: Worker thread 2 started
+[2026-09-17 14:01:48] SERVER: Worker thread 3 started
+[2026-09-17 14:01:48] SERVER: Worker thread 4 started
+[2026-09-17 14:02:05] SERVER: Client connected: 127.0.0.1
+[2026-09-17 14:03:08] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 14:09:49] SERVER: Server shutdown initiated
+[2026-09-17 14:09:49] SERVER: Memory-mapped database closed
+[2026-09-17 14:16:34] SERVER: Logger initialized successfully
+[2026-09-17 14:16:34] SERVER: Server started successfully
+[2026-09-17 14:16:34] SERVER: Worker thread 1 started
+[2026-09-17 14:16:34] SERVER: Worker thread 2 started
+[2026-09-17 14:16:34] SERVER: Worker thread 3 started
+[2026-09-17 14:16:34] SERVER: Worker thread 4 started
+[2026-09-17 14:16:45] SERVER: Client connected: 127.0.0.1
+[2026-09-17 14:18:56] SERVER: Server shutdown initiated
+[2026-09-17 14:18:56] SERVER: Memory-mapped database closed
+[2026-09-17 14:25:20] SERVER: Logger initialized successfully
+[2026-09-17 14:25:20] SERVER: Server started successfully
+[2026-09-17 14:25:20] SERVER: Worker thread 3 started
+[2026-09-17 14:25:20] SERVER: Worker thread 1 started
+[2026-09-17 14:25:20] SERVER: Worker thread 2 started
+[2026-09-17 14:25:20] SERVER: Worker thread 4 started
+[2026-09-17 14:25:26] SERVER: Client connected: 127.0.0.1
+[2026-09-17 14:26:52] SERVER: Client disconnected: 127.0.0.1
+[2026-09-17 14:30:48] SERVER: Server shutdown initiated
+[2026-09-17 14:30:48] SERVER: Memory-mapped database closed
+[2026-09-18 03:13:39] SERVER: Logger initialized successfully
+[2026-09-18 03:13:39] SERVER: Server started successfully
+[2026-09-18 03:13:39] SERVER: Worker thread 1 started
+[2026-09-18 03:13:39] SERVER: Worker thread 2 started
+[2026-09-18 03:13:39] SERVER: Worker thread 3 started
+[2026-09-18 03:13:39] SERVER: Worker thread 4 started
+[2026-09-18 03:14:27] SERVER: Client connected: 127.0.0.1
+[2026-09-18 03:16:18] SERVER: Client disconnected: 127.0.0.1
+[2026-09-18 03:18:03] SERVER: Server shutdown initiated
+[2026-09-18 03:18:03] SERVER: Memory-mapped database closed
+[2026-09-22 09:00:06] SERVER: Logger initialized successfully
+[2026-09-22 09:00:06] SERVER: Server started successfully
+[2026-09-22 09:00:06] SERVER: Worker thread 1 started
+[2026-09-22 09:00:06] SERVER: Worker thread 2 started
+[2026-09-22 09:00:06] SERVER: Worker thread 3 started
+[2026-09-22 09:00:06] SERVER: Worker thread 4 started
+[2026-09-22 09:00:35] SERVER: Client connected: 127.0.0.1
+[2026-09-22 09:01:59] SERVER: Server shutdown initiated
+[2026-09-22 09:01:59] SERVER: Memory-mapped database closed
+[2026-09-23 06:18:19] SERVER: Logger initialized successfully
+[2026-09-23 06:18:19] SERVER: Server started successfully
+[2026-09-23 06:18:19] SERVER: Worker thread 1 started
+[2026-09-23 06:18:19] SERVER: Worker thread 3 started
+[2026-09-23 06:18:19] SERVER: Worker thread 4 started
+[2026-09-23 06:18:19] SERVER: Worker thread 2 started
+[2026-09-23 06:18:48] SERVER: Client connected: 127.0.0.1
+[2026-09-23 06:20:16] SERVER: Client disconnected: 127.0.0.1
+[2026-09-23 06:20:18] SERVER: Server shutdown initiated
+[2026-09-23 06:20:18] SERVER: Memory-mapped database closed
+[2026-09-23 15:58:52] SERVER: Logger initialized successfully
+[2026-09-23 15:58:52] SERVER: Server started successfully
+[2026-09-23 15:58:52] SERVER: Worker thread 1 started
+[2026-09-23 15:58:52] SERVER: Worker thread 2 started
+[2026-09-23 15:58:52] SERVER: Worker thread 3 started
+[2026-09-23 15:58:52] SERVER: Worker thread 4 started
+[2026-09-23 16:00:57] SERVER: Client connected: 127.0.0.1
+[2026-09-23 16:10:03] SERVER: Logger initialized successfully
+[2026-09-23 16:10:24] SERVER: Logger initialized successfully
+[2026-09-23 16:11:29] SERVER: Logger initialized successfully
+[2026-09-23 16:11:29] SERVER: Server started successfully
+[2026-09-23 16:11:29] SERVER: Worker thread 1 started
+[2026-09-23 16:11:29] SERVER: Worker thread 2 started
+[2026-09-23 16:11:29] SERVER: Worker thread 4 started
+[2026-09-23 16:11:29] SERVER: Worker thread 3 started
+[2026-09-23 16:11:42] SERVER: Client connected: 127.0.0.1
+[2026-09-23 16:13:39] SERVER: Server shutdown initiated
+[2026-09-23 16:13:39] SERVER: Memory-mapped database closed
+[2026-09-23 16:27:48] SERVER: Logger initialized successfully
+[2026-09-23 16:27:48] SERVER: Server started successfully
+[2026-09-23 16:27:48] SERVER: Worker thread 1 started
+[2026-09-23 16:27:48] SERVER: Worker thread 3 started
+[2026-09-23 16:27:48] SERVER: Worker thread 4 started
+[2026-09-23 16:27:48] SERVER: Worker thread 2 started
+[2026-09-23 16:29:13] SERVER: Client connected: 127.0.0.1
+[2026-09-23 16:35:32] SERVER: Client connected: 127.0.0.1
+[2026-09-23 16:36:50] SERVER: Client disconnected: 127.0.0.1
+[2026-09-23 16:37:01] SERVER: Client connected: 127.0.0.1
+[2026-09-23 16:49:15] SERVER: Server shutdown initiated
+[2026-09-23 16:49:15] SERVER: Memory-mapped database closed

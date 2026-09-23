@@ -1,0 +1,7 @@
+server
+client
+test_database
+test_logger
+test_queue
+*.o
+*.tmp
