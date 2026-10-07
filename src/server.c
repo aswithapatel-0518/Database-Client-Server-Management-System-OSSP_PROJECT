@@ -15,9 +15,11 @@
 #include "../include/queue.h"
 #include "../include/logger.h"
 #include "../include/monitor.h"
+#include "../include/auth.h"
 static volatile sig_atomic_t server_running = 1;
 static int server_fd = -1;
-
+static int active_clients = 0;
+static pthread_mutex_t client_count_mutex = PTHREAD_MUTEX_INITIALIZER;
 /* Handle SIGINT and SIGTERM */
 void handle_shutdown(int signal_number)
 {
@@ -53,9 +55,132 @@ void process_request(Request request, Response *response)
         );
         return;
     }
+    /* REGISTER */
+    if (strcmp(command, "REGISTER") == 0) {
+
+        char username[MAX_USERNAME];
+        char password[MAX_PASSWORD];
+
+        if (sscanf(
+                request.request,
+                "REGISTER %49s %49s",
+                username,
+                password
+            ) != 2) {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Usage: REGISTER username password\n"
+            );
+
+            return;
+        }
+
+        int result = register_user(username, password);
+
+        if (result == 0) {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "SUCCESS: Registration completed\n"
+            );
+
+        } else if (result == 1) {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Username already exists\n"
+            );
+
+        } else {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Registration failed\n"
+            );
+        }
+
+        return;
+    }
+
+    /* LOGIN */
+    else if (strcmp(command, "LOGIN") == 0) {
+
+        char username[MAX_USERNAME];
+        char password[MAX_PASSWORD];
+
+        if (sscanf(
+                request.request,
+                "LOGIN %49s %49s",
+                username,
+                password
+            ) != 2) {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Usage: LOGIN username password\n"
+            );
+
+            return;
+        }
+
+        int result = authenticate_user(username, password);
+
+        if (result == 0) {
+
+            if (login_client(request.client_fd, username) == 0) {
+
+                snprintf(
+                    response->response,
+                    MAX_RESPONSE,
+                    "SUCCESS: Login successful. Welcome %s!\n",
+                    username
+                );
+
+            } else {
+
+                snprintf(
+                    response->response,
+                    MAX_RESPONSE,
+                    "ERROR: Maximum client sessions reached\n"
+                );
+            }
+
+        } else if (result == 1) {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Invalid username or password\n"
+            );
+
+        } else {
+
+            snprintf(
+                response->response,
+                MAX_RESPONSE,
+                "ERROR: Authentication system unavailable\n"
+            );
+        }
+
+        return;
+    }
 
     /* INSERT command */
     if (strcmp(command, "INSERT") == 0) {
+ if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: Please login first\n"
+        );
+        return;
+    }
         Student student;
 
         int fields = sscanf(
@@ -96,7 +221,16 @@ void process_request(Request request, Response *response)
 
     /* SEARCH command */
     else if (strcmp(command, "SEARCH") == 0) {
-        int id;
+          if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: Please login first\n"
+        );
+        return;
+    }
+
+int id;
         Student student;
 
         if (sscanf(request.request, "SEARCH %d", &id) != 1) {
@@ -130,7 +264,15 @@ void process_request(Request request, Response *response)
 
     /* UPDATE command */
     else if (strcmp(command, "UPDATE") == 0) {
-        int id;
+         if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: Please login first\n"
+        );
+        return;
+    }
+int id;
         float marks;
         float attendance;
 
@@ -168,6 +310,14 @@ void process_request(Request request, Response *response)
 
     /* DELETE command */
     else if (strcmp(command, "DELETE") == 0) {
+if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: Please login first\n"
+        );
+        return;
+    }
         int id;
 
         if (sscanf(request.request, "DELETE %d", &id) != 1) {
@@ -195,34 +345,83 @@ void process_request(Request request, Response *response)
     }
 
     /* DISPLAY command */
-    else if (strcmp(command, "DISPLAY") == 0) {
-        display_all_students();
+    /* DISPLAY command */
+else if (strcmp(command, "DISPLAY") == 0) {
+if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: Please login first\n"
+        );
+        return;
+    }
+
+    display_all_students(
+        response->response,
+        MAX_RESPONSE
+    );
+}
+
+
+/* MONITOR command */
+else if (strcmp(command, "MONITOR") == 0) {
+
+    if (!is_client_logged_in(request.client_fd)) {
 
         snprintf(
             response->response,
             MAX_RESPONSE,
-            "SUCCESS: Student records displayed on server terminal\n"
+            "ERROR: Please login first\n"
         );
+
+        return;
     }
-/* DISPLAY command */
-else if (strcmp(command, "DISPLAY") == 0) {
-    display_all_students();
 
-    snprintf(
-        response->response,
-        MAX_RESPONSE,
-        "SUCCESS: Student records displayed on server terminal\n"
-    );
-}
-
-/* MONITOR command */
-else if (strcmp(command, "MONITOR") == 0) {
     monitor_process();
 
+    pthread_mutex_lock(&client_count_mutex);
+
+    int current_clients = active_clients;
+
+    pthread_mutex_unlock(&client_count_mutex);
+
+    int memory_usage = get_memory_usage_kb();
+    int total_threads = get_thread_count();
+
     snprintf(
         response->response,
         MAX_RESPONSE,
-        "SUCCESS: Monitoring information displayed on server terminal\n"
+        "SUCCESS: Monitoring information\n"
+        "Active Clients: %d\n"
+        "Max Clients: %d\n"
+        "Worker Threads: %d\n"
+        "Total Threads: %d\n"
+        "Memory Usage: %d kB\n",
+        current_clients,
+        server_config.max_clients,
+        MAX_WORKERS,
+        total_threads,
+        memory_usage
+    );
+}
+/* LOGOUT */
+else if (strcmp(command, "LOGOUT") == 0) {
+
+    if (!is_client_logged_in(request.client_fd)) {
+        snprintf(
+            response->response,
+            MAX_RESPONSE,
+            "ERROR: You are not logged in\n"
+        );
+        return;
+    }
+
+    logout_client(request.client_fd);
+
+    snprintf(
+        response->response,
+        MAX_RESPONSE,
+        "SUCCESS: Logged out successfully\n"
     );
 }
 
@@ -418,12 +617,21 @@ void *client_thread(void *arg)
 
     close(client_fd);
 
-    snprintf(
-        log_message,
-        sizeof(log_message),
-        "Client disconnected: %s",
-        client_ip
-    );
+/* Decrement active client count */
+pthread_mutex_lock(&client_count_mutex);
+
+if (active_clients > 0) {
+    active_clients--;
+}
+
+pthread_mutex_unlock(&client_count_mutex);
+
+snprintf(
+    log_message,
+    sizeof(log_message),
+    "Client disconnected: %s",
+    client_ip
+);
     log_server_activity(log_message);
 
     return NULL;
@@ -607,11 +815,16 @@ int main(void)
             perror("Accept failed");
             continue;
         }
+pthread_mutex_lock(&client_count_mutex);
+active_clients++;
+pthread_mutex_unlock(&client_count_mutex);
 
-        int *client_fd_ptr = malloc(sizeof(int));
+int *client_fd_ptr = malloc(sizeof(int));
+
 
         if (client_fd_ptr == NULL) {
             perror("Memory allocation failed");
+remove_client_session(client_fd);
             close(client_fd);
             continue;
         }

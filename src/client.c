@@ -55,13 +55,16 @@ int main(void)
     printf("Server Port: %d\n", SERVER_PORT);
 
     printf("\nAvailable commands:\n");
-    printf("INSERT id name course marks attendance\n");
-    printf("SEARCH id\n");
-    printf("UPDATE id marks attendance\n");
-    printf("DELETE id\n");
-    printf("DISPLAY\n");
-    printf("MONITOR\n");
-    printf("EXIT\n");
+printf("REGISTER username password\n");
+printf("LOGIN username password\n");
+printf("LOGOUT\n");
+printf("INSERT id name course marks attendance\n");
+printf("SEARCH id\n");
+printf("UPDATE id marks attendance\n");
+printf("DELETE id\n");
+printf("DISPLAY\n");
+printf("MONITOR\n");
+printf("EXIT\n");
 
     while (1) {
         printf("\nEnter request: ");

@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Iinclude
 
 LDFLAGS = -pthread -lrt
 
-SERVER_SOURCES = src/server.c src/database.c src/queue.c src/logger.c src/config.c src/monitor.c
+SERVER_SOURCES = src/server.c src/database.c src/queue.c src/logger.c src/config.c src/monitor.c src/auth.c
 
 CLIENT_SOURCES = src/client.c
 

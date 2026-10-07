@@ -264,18 +264,28 @@ int delete_student(int id)
 
 
 /* Display all active students */
-void display_all_students(void)
+void display_all_students(char *output, size_t output_size)
 {
     pthread_mutex_lock(&db_mutex);
 
-    printf("\n========== STUDENT DATABASE ==========\n");
-
+    size_t used = 0;
     int found = 0;
+
+    used += snprintf(
+        output + used,
+        output_size - used,
+        "========== STUDENT DATABASE ==========\n"
+    );
 
     for (int i = 0; i < MAX_STUDENTS; i++) {
 
         if (db[i].active == 1) {
-            printf(
+
+            found = 1;
+
+            used += snprintf(
+                output + used,
+                output_size - used,
                 "ID: %d | Name: %s | Course: %s | Marks: %.2f | Attendance: %.2f%%\n",
                 db[i].id,
                 db[i].name,
@@ -284,15 +294,25 @@ void display_all_students(void)
                 db[i].attendance
             );
 
-            found = 1;
+            if (used >= output_size) {
+                break;
+            }
         }
     }
 
     if (!found) {
-        printf("No active students found.\n");
+        used += snprintf(
+            output + used,
+            output_size - used,
+            "No active students found.\n"
+        );
     }
 
-    printf("======================================\n");
+    snprintf(
+        output + (used < output_size ? used : output_size - 1),
+        used < output_size ? output_size - used : 1,
+        "======================================\n"
+    );
 
     pthread_mutex_unlock(&db_mutex);
 }

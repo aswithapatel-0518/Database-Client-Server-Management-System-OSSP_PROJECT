@@ -14,6 +14,6 @@ int search_student(int id, Student *result);
 int update_student(int id, float marks, float attendance);
 int delete_student(int id);
 
-void display_all_students(void);
+void display_all_students(char *output, size_t output_size);
 
 #endif
